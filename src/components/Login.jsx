@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 
@@ -13,8 +12,9 @@ const Login = () => {
         objectFit="contain"
       />
       <h2
-        onClick={signIn}
-        className="p-5 bg-blue-500 rounded-full text-white text-center cursor-pointer my-20">
+        onClick={() => signIn()}
+        className="p-5 bg-blue-500 rounded-full text-white text-center cursor-pointer my-20"
+      >
         LogIn With Facebook
       </h2>
     </div>
