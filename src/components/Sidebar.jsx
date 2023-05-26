@@ -17,6 +17,7 @@ const Sidebar = () => {
   return (
     <div className="p-2 mt-5 max-w-[600px] xl:min-w-[300px]">
       {/* <SidebarRow src={session.user.image} title={session.user.name} /> */}
+      <SidebarRow src={"/santajit.jpeg"} title={"Santajit Patra"} />
 
       <SidebarRow Icon={UserIcon} title="Friend" />
       <SidebarRow Icon={UserGroupIcon} title="Group" />
