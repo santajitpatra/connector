@@ -28,7 +28,7 @@ const Header = () => {
           src="/logo.png"
           width={200}
           height={200}
-          layout="fixed"
+          // layout="fixed"/
           alt="Picture of the author"
         />
         <div className="flex ml-2 items-center rounded-full bg-gray-100 p-2">
