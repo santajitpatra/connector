@@ -30,6 +30,7 @@ const Header = () => {
           height={200}
           // layout="fixed"/
           alt="Picture of the author"
+          priority
         />
         <div className="flex ml-2 items-center rounded-full bg-gray-100 p-2">
           <MagnifyingGlassIcon className="h-6 to-gray-600" />
@@ -58,10 +59,10 @@ const Header = () => {
           src={session.user.image}
           width={40}
           height={40}
-          layout="fixed"
+          // layout="fixed"
           alt="Picture of the author"
         />
-        <p className="whitespace-nowrap font-semibold pr-3">Santajit Patra</p>
+        <p className="whitespace-nowrap font-semibold pr-3">{session.user.name}</p>
         <Squares2X2Icon className="icon" />
         <ChatBubbleLeftEllipsisIcon className="icon" />
         <BellIcon className="icon" />

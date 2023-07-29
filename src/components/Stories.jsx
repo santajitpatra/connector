@@ -53,19 +53,21 @@ const Stories = () => {
             width={40}
             height={40}
             alt="Picture"
-            layout="fixed"
-            objectFit="cover"
+            // layout="fixed"
+            // objectFit="cover"
           />
           <Image
             className="object-cover filter brightness-75 rounded-full lg:rounded-3xl "
             src={story.src}
             alt="Picture"
-            layout="fill"
+            // layout="fill"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <p className="absolute opacity-0 lg:opacity-100 bottom-4 w-5/6 text-white text-sm font-bold truncate">
             {story.name}
           </p>
-                {/* {stories.map((story) => {
+          {/* {stories.map((story) => {
         <StoryCard
           key={story.src}
           name={story.name}

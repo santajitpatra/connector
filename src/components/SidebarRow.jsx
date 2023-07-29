@@ -9,7 +9,7 @@ const SidebarRow = ({src, Icon, title}) => {
           src={src}
           width={30}
           height={30}
-          layout="fixed"
+          // layout="fixed"
           alt="Picture of the author"
         />
       )}

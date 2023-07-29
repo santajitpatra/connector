@@ -9,7 +9,8 @@ const Login = () => {
         width={400}
         height={400}
         alt="Picture of the author"
-        objectFit="contain"
+        // objectFit="contain"
+        priority
       />
       <h2
         onClick={() => signIn()}
