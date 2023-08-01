@@ -3,8 +3,22 @@ import { FaceSmileIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { db } from "../../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db, storage } from "../../firebase";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  setDoc,
+} from "firebase/firestore";
+
+import {
+  ref,
+  uploadString,
+  set,
+  getDownloadURL,
+  
+} from "firebase/storage";
 
 function InputBox() {
   const { data: session } = useSession();
@@ -22,10 +36,43 @@ function InputBox() {
       name: session.user.name,
       email: session.user.email,
       image: session.user.image,
+
       timestamp: serverTimestamp(),
     });
-
+    if (imageToPost) {
+      uploadPost(result);
+    }
     inputRef.current.value = "";
+  };
+
+  const uploadPost = async (docs) => {
+    if (imageToPost) {
+    const storageRef = ref(storage, `posts/${docs.id}`);
+    const uploadTask = uploadString(storageRef, imageToPost, "data_url");
+      
+
+      removeImage();
+  uploadTask
+    .then(async () => {
+      const downloadURL = await getDownloadURL(storageRef);
+
+      getDownloadURL(storageRef).then((url) => {
+        // Update the Firestore document with the download URL
+           const postRef =  doc(db, "posts", docs.id);
+           setDoc(postRef, { postImage: downloadURL }, { merge: true })
+             .then(() => {
+               console.log("Firestore document updated successfully");
+             })
+             .catch((error) => {
+               console.error("Error updating Firestore document:", error);
+             });
+      });
+    })
+    .catch((error) => {
+      console.error("Error during file upload:", error);
+    });
+
+    }
   };
 
   const addImageToPost = (e) => {
@@ -52,7 +99,6 @@ function InputBox() {
           width={40}
           height={40}
           alt="Picture of the author"
-          // layout="fixed"
         />
         <form className="flex flex-1" action="ok">
           <input
